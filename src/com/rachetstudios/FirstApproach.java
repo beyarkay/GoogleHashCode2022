@@ -19,7 +19,7 @@ public class FirstApproach {
 			do {
 				for (InputAsPojo.Project project : projectsList) {
 					if (Helper.tooLate(project, currentTime)) {
-					
+						project
 					}
 //					project.score = ... # number of points we'd get if we started it now
 				}

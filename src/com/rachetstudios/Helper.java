@@ -25,7 +25,7 @@ public class Helper {
 	 * @return the number of points available
 	 */
 	public static int pointsPossibleToEarn(InputAsPojo.Project project, int currentTime) {
-		int remainingDays = project.bestBeforeDay - currentTime;
+		int remainingDays = project.bestBeforeDay - (currentTime+project.daysToCompletion);
 		if (remainingDays <= 0) {
 			int possibleScore = project.scoreOnCompletion - currentTime;
 			if (possibleScore <= 0) {
