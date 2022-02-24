@@ -57,15 +57,18 @@ public class Helper {
 	public static ArrayList<InputAsPojo.Person> canStart(InputAsPojo.Project project) {
 		ArrayList<InputAsPojo.Person> peopleOnJob = new ArrayList<InputAsPojo.Person>(project.numRoles);
 		ArrayList<InputAsPojo.Skill> skillsRequired = new ArrayList<InputAsPojo.Skill>(project.skills);
-		
+
 //		System.out.println(skillsRequired);
-		
+
 		for (InputAsPojo.Person person : input.people) {
-			
+			if (peopleOnJob.contains(person)) {
+				continue;
+			}
+
 			if(peopleOnJob.size() == project.skills.size()){
 				return peopleOnJob;
 			}
-			
+
 			InputAsPojo.Skill skillFilled = person.canDoJob(skillsRequired);
 			if (skillFilled.name == null) {
 				continue;
