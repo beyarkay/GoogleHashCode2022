@@ -14,8 +14,8 @@ public class FirstApproach {
 	public static void run() {
 		System.out.println("running");
 		ArrayList<InputAsPojo.Project> projectsList = input.projects;
-		PriorityQueue<InputAsPojo.Project> runningProjects = new PriorityQueue<>(Comparator.comparingInt(o -> o.daysToCompletion)
-		);
+		PriorityQueue<InputAsPojo.Project> runningProjects =
+				new PriorityQueue<>(Comparator.comparingInt(o -> o.daysToCompletion));
 
 //		list of idle people
 //		list of projects
@@ -23,14 +23,16 @@ public class FirstApproach {
 //		    Alternatively sort by expiry date
 		int currentTime = 0;
 		while (projectsList.size() > 0) {
-			boolean startedAProject = false; // Check if we were able to find a project
+			boolean startedAProject; // Check if we were able to find a project
 			do {
+				startedAProject = false;
 				for (InputAsPojo.Project project : projectsList) {
 					project.pointsPerPersonHour = pointsPerPersonHour(project, currentTime);
 				}
 				projectsList.sort(comparePointsPerHour);
 				
-				for (InputAsPojo.Project project : projectsList) {
+				for (int i = 0; i < projectsList.size(); i++) {
+					InputAsPojo.Project project = projectsList.get(i);
 					ArrayList<InputAsPojo.Person> peopleOnJob = Helper.canStart(project);
 					if (peopleOnJob != null) {
 
@@ -39,24 +41,32 @@ public class FirstApproach {
 						project.endTime = currentTime + project.daysToCompletion;
 						runningProjects.add(project);
 						projectsList.remove(project);
+						i--;
 						startedAProject = true;
 						output.completedProjects.add(new OutputItems.CompletedProject(project, project.peopleOnProject));
+						input.people.removeAll(peopleOnJob);
 						
 						
 					}
 				}
 				
 			} while (startedAProject);
-			/*
 			
-		    # wait for a project to finish
-		    next_completed_project = get_next_completed_project(running_projects)
-		    running_projects.remove(next_completed_project)
-		    current_time = next_completed_project.start_time + next_completed_project.start_time.duration
-			 */
-//			for (InputAsPojo.Person person : peopleOnJob) {
-//				person.currentSkill.level += 1;
-//			}
+			
+			// wait for a project to finish
+			int endTime;
+			do {
+				InputAsPojo.Project next_completed_project = runningProjects.poll();
+				endTime = next_completed_project.endTime;
+				for (InputAsPojo.Person person : next_completed_project.peopleOnProject) {
+					person.currentSkill.level += 1;
+				}
+				input.people.addAll(next_completed_project.peopleOnProject);
+			} while (runningProjects.peek() != null && endTime == runningProjects.peek().endTime);
+			
+			currentTime = endTime;
+
+//
 		}
 		
 		

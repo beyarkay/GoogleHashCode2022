@@ -15,6 +15,7 @@ public class OutputItems {
 
     public OutputItems(String filepath) {
         this.filepath = filepath;
+        this.completedProjects = new ArrayList<>();
     }
 
     public void writeToFile() throws IOException {
