@@ -37,7 +37,21 @@ public class FirstApproach {
 					if (peopleOnJob != null) {
 
 //						 start the project
-						project.peopleOnProject = peopleOnJob;  // People capable of doing the jobe
+
+
+						ArrayList<InputAsPojo.Person> orderedPeopleOnJob = new ArrayList<>();
+						for (InputAsPojo.Skill skill : project.skills) {
+							for (InputAsPojo.Person person : peopleOnJob) {
+								if (person.currentSkill == skill) {
+									orderedPeopleOnJob.add(person);
+									break;
+								}
+							}
+						}
+
+						project.peopleOnProject = orderedPeopleOnJob;  // People capable of doing the jobe
+
+
 						project.endTime = currentTime + project.daysToCompletion;
 						runningProjects.add(project);
 						projectsList.remove(project);
