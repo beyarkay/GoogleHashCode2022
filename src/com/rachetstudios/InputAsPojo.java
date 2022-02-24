@@ -1,6 +1,5 @@
 package com.rachetstudios;
 
-import jdk.internal.math.FloatingDecimal;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -55,7 +54,7 @@ public class InputAsPojo {
                         // TODO Right now all these classes are arbitrary. Rename and refactor them once we know what they're called
                         Integer.parseInt(stRest.nextToken()),
                         (String) (stRest.nextToken()),
-                        FloatingDecimal.parseFloat(stRest.nextToken()),
+                        Float.parseFloat(stRest.nextToken()),
                         Double.parseDouble(stRest.nextToken())
                 );
                 rest.add(lineItem);
@@ -73,7 +72,7 @@ public class InputAsPojo {
 //                        // TODO Right now all these classes are arbitrary. Rename and refactor them once we know what they're called
 //                        Integer.parseInt(stRest.nextToken()),
 //                        (String) (stRest.nextToken()),
-//                        FloatingDecimal.parseFloat(stRest.nextToken()),
+//                        Float.parseFloat(stRest.nextToken()),
 //                        Double.parseDouble(stRest.nextToken())
 //                );
 //                otherRest.add(otherLineItem);
