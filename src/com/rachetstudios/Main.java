@@ -7,6 +7,7 @@ import java.util.stream.*;
 public class Main {
 
     public static InputAsPojo input;
+    public static OutputItems output;
     
     public static void main(String[] args) {
         System.out.println("Hello world");
@@ -20,6 +21,8 @@ public class Main {
         System.out.println("input.people.get(0) = " + input.people.get(0));
         System.out.println("input.projects.get(0) = " + input.projects.get(0));
 
+        output = new OutputItems("examples_out/temp.txt");
+        
         FirstApproach.run();
     }
 

@@ -2,16 +2,21 @@ package com.rachetstudios;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.PriorityQueue;
 
 import static com.rachetstudios.Helper.pointsPerPersonHour;
 
 import static com.rachetstudios.Main.input;
+import static com.rachetstudios.Main.output;
 
 public class FirstApproach {
 	
 	public static void run() {
 		System.out.println("running");
 		ArrayList<InputAsPojo.Project> projectsList = input.projects;
+		PriorityQueue<InputAsPojo.Project> runningProjects = new PriorityQueue<>(Comparator.comparingInt(o -> o.daysToCompletion)
+		);
+
 //		list of idle people
 //		list of projects
 //		    Sort this by points/total man hours
@@ -28,15 +33,15 @@ public class FirstApproach {
 				for (InputAsPojo.Project project : projectsList) {
 					ArrayList<InputAsPojo.Person> peopleOnJob = Helper.canStart(project);
 					if (peopleOnJob != null) {
-						/*
-						# start the project
-		                project.people = ... # any people capable of doing it
-		                project.start_time = current_time
-		                running_projects.append(project)
-		                projects_list.remove(project)
-		                started_a_project = True
-		                write_to_output_file(project)
-						 */
+
+//						 start the project
+						project.peopleOnProject = peopleOnJob;  // People capable of doing the jobe
+						project.endTime = currentTime + project.daysToCompletion;
+						runningProjects.add(project);
+						projectsList.remove(project);
+						startedAProject = true;
+						output.completedProjects.add(new OutputItems.CompletedProject(project, project.peopleOnProject));
+						
 					}
 				}
 				

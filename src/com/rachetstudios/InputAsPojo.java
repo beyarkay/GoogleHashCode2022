@@ -190,7 +190,9 @@ public class InputAsPojo {
         Integer numRoles, R;
         ArrayList<Skill> skills;
         Double pointsPerPersonHour;
-
+        
+        ArrayList<Person> peopleOnProject;
+        int endTime;
 
         public Project(String projectName, Integer daysToCompletion, Integer scoreOnCompletion, Integer bestBeforeDay, Integer numRoles, ArrayList<Skill> skills) {
             this.projectName = projectName;

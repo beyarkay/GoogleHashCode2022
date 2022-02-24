@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class OutputItems {
     String filepath;
     // TODO rename items1 to be semantically correct
-    ArrayList<CompletedProject> completedProjects;
+    public ArrayList<CompletedProject> completedProjects;
 
     public OutputItems(String filepath) {
         this.filepath = filepath;
@@ -53,7 +53,7 @@ public class OutputItems {
         public String toString() {
             String peopleAsString = people.stream()
                     .map(p -> p.name)
-                    .reduce("", (a, b) -> a + " " + b);
+                    .reduce("", (a, b) -> a + " " + b).trim();
             return projectName + "\n" + peopleAsString + "\n";
         }
     }
