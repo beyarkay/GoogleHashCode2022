@@ -1,19 +1,17 @@
 package com.rachetstudios;
 
-import com.rachetstudios.InputAsPojo;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class OutputItems {
     String filepath;
     // TODO rename items1 to be semantically correct
-    ArrayList<OutputItem> items1;
-
-    // TODO items2 is only needed if we're returning more than one type of object
-//    ArrayList<OutputItem2> items2;
+    ArrayList<CompletedProject> completedProjects;
 
     public OutputItems(String filepath) {
         this.filepath = filepath;
@@ -22,41 +20,41 @@ public class OutputItems {
     public void writeToFile() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(this.filepath));
 
-        // TODO properly
-        for (OutputItem o1 : items1) {
-            writer.write(o1.toString() + "\n");
+        writer.write(completedProjects.size() + "\n");
+        for (CompletedProject proj : completedProjects) {
+            writer.write(proj.toString());
         }
-
-        // TODO items2 is only needed if we're returning more than one type of object
-//        for (Object o2 : items2) {
-//            writer.write(String.valueOf(o2) + "\n");
-//        }
 
         writer.close();
     }
 
-    public static class OutputItem {
-        // TODO refactor and rename these and give them more specific classes
-        Object thing1;
-        Object thing2;
-        Object thing3;
-        Object thing4;
+    public static class CompletedProject {
+        String projectName;
+        ArrayList<InputAsPojo.Person> people;
 
-        public OutputItem(Object thing1, Object thing2, Object thing3, Object thing4) {
-            this.thing1 = thing1;
-            this.thing2 = thing2;
-            this.thing3 = thing3;
-            this.thing4 = thing4;
+        /**
+         * Plain ol' constructor with each member variable
+         */
+        public CompletedProject(String projectName, ArrayList<InputAsPojo.Person> people) {
+            this.projectName = projectName;
+            this.people = people;
+        }
+
+        /**
+         * Constructor to build a completed project from a given project and a
+         * list of people working on that project
+         */
+        public CompletedProject(InputAsPojo.Project project, ArrayList<InputAsPojo.Person> people) {
+            this.projectName = project.projectName;
+            this.people = people;
         }
 
         @Override
         public String toString() {
-            return  "thing1=" + String.valueOf(thing1) +
-                    "thing2=" + String.valueOf(thing2) +
-                    "thing3=" + String.valueOf(thing3) +
-                    "thing4=" + String.valueOf(thing4);
+            String peopleAsString = people.stream()
+                    .map(p -> p.name)
+                    .reduce("", (a, b) -> a + " " + b);
+            return projectName + "\n" + peopleAsString + "\n";
         }
     }
-
-
 }
