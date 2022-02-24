@@ -132,7 +132,7 @@ public class InputAsPojo {
         }
     }
 
-    public static class Skill {
+    public static class Skill implements Comparable<Skill> {
         String name;
         Integer level;
 
@@ -148,18 +148,29 @@ public class InputAsPojo {
                     ", level=" + level +
                     '}';
         }
+
+        /**
+         * If this == other:  0 is returned
+         * If this < other:  -1 is returned
+         * If this > other:   1 is returned
+         */
+        @Override
+        public int compareTo(Skill other) {
+            return this.level - other.level;
+        }
     }
 
     /**
      * Also represents one line of input data.
      */
-    public static class Project {
+    public static class Project implements Comparable<Project> {
         String projectName, name;
         Integer daysToCompletion, D;
         Integer scoreOnCompletion, S;
         Integer bestBeforeDay, B;
         Integer numRoles, R;
         ArrayList<Skill> skills;
+        Double pointsPerDay;
 
 
         public Project(String projectName, Integer daysToCompletion, Integer scoreOnCompletion, Integer bestBeforeDay, Integer numRoles, ArrayList<Skill> skills) {
@@ -175,6 +186,8 @@ public class InputAsPojo {
             this.S = this.scoreOnCompletion;
             this.B = this.bestBeforeDay;
             this.R = this.numRoles;
+
+            this.pointsPerDay = Double.valueOf(this.scoreOnCompletion) / Double.valueOf(this.daysToCompletion);
         }
 
         @Override
@@ -187,6 +200,16 @@ public class InputAsPojo {
                     ", numRoles=" + numRoles +
                     ", skills=" + skills +
                     '}';
+        }
+
+        /**
+         * If this == other:  0 is returned
+         * If this < other:  -1 is returned
+         * If this > other:   1 is returned
+         */
+        @Override
+        public int compareTo(Project other) {
+            return (int) (this.pointsPerDay - other.pointsPerDay);
         }
     }
 }
