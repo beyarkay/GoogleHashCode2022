@@ -5,17 +5,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class InputAsPojo {
     // Represents the very first line, which usually just has ints
-    ArrayList<Integer> first;
+    ArrayList<Integer> first = new ArrayList<>();
     // Represents the remainder of the lines which usually represent a bunch of custom objects. @see LineItem
     // TODO rename rest to be more semantically appropriate (ie 'Cars' or something)
-    ArrayList<LineItem> rest;
+    ArrayList<LineItem> rest = new ArrayList<>();
     // Sometimes there are actually two arrays of items described. In this case, last contains those items
     // TODO rename rest2 to be more semantically appropriate (ie 'People' or something)
-    ArrayList<OtherLineItem> otherRest;
+    ArrayList<OtherLineItem> otherRest = new ArrayList<>();
 
 
     /**
@@ -35,48 +36,32 @@ public class InputAsPojo {
             BufferedReader br = new BufferedReader(new FileReader(path));
 
             // Read the first line with all the special input tokens
-            StringTokenizer stFirst = new StringTokenizer(br.readLine());
-            while (stFirst.hasMoreTokens()) {
-                first.add(Integer.parseInt(stFirst.nextToken()));
+            String[] firstTokens = br.readLine().split(" ");
+
+            for (String token: firstTokens) {
+                first.add(Integer.parseInt(token));
             }
+
 
             // TODO we're assuming here that the very first token on the first line contains the total number of line items
             int numberOfLineItems = first.get(0);
 
             // And now go through the rest of the file, reading numberOfLineItems and saving them to some dummy variable
             while (numberOfLineItems-- > 0) {
-                StringTokenizer stRest = new StringTokenizer(br.readLine());
+                String[] restTokens = br.readLine().split(" ");
                 // TODO remove this assertion once we know how many tokens there are per line
-                assert stRest.countTokens() == 4;
+                assert restTokens.length == 4;
 
                 // Create a lineItem object to represent whatever is on the current line
                 LineItem lineItem = new LineItem(
                         // TODO Right now all these classes are arbitrary. Rename and refactor them once we know what they're called
-                        Integer.parseInt(stRest.nextToken()),
-                        (String) (stRest.nextToken()),
-                        Float.parseFloat(stRest.nextToken()),
-                        Double.parseDouble(stRest.nextToken())
+                        Integer.parseInt(restTokens[0]),
+                        Integer.parseInt(restTokens[0]),
+                        (String) (restTokens[0]),
+                        Integer.parseInt(restTokens[0])
                 );
                 rest.add(lineItem);
             }
-
-            // TODO this is only important if there are more than one set of objects (ie Libraries and Books, or Intersections and People)
-//            int numberOfSecondaryLineItems = -1; // first.get(2);
-//            while (numberOfSecondaryLineItems-- > 0) {
-//                StringTokenizer stRest = new StringTokenizer(br.readLine());
-//                // TODO remove this assertion once we know how many tokens there are per line
-//                assert stRest.countTokens() == 4;
-//
-//                // Create a lineItem object to represent whatever is on the current line
-//                OtherLineItem otherLineItem = new OtherLineItem(
-//                        // TODO Right now all these classes are arbitrary. Rename and refactor them once we know what they're called
-//                        Integer.parseInt(stRest.nextToken()),
-//                        (String) (stRest.nextToken()),
-//                        Float.parseFloat(stRest.nextToken()),
-//                        Double.parseDouble(stRest.nextToken())
-//                );
-//                otherRest.add(otherLineItem);
-//            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -88,12 +73,12 @@ public class InputAsPojo {
      */
     public static class LineItem {
         // TODO refactor and rename these and give them more specific classes
-        Object thing1;
-        Object thing2;
-        Object thing3;
-        Object thing4;
+        Integer thing1;
+        Integer thing2;
+        String thing3;
+        Integer thing4;
 
-        public LineItem(Object thing1, Object thing2, Object thing3, Object thing4) {
+        public LineItem(Integer thing1, Integer thing2, String thing3, Integer thing4) {
             this.thing1 = thing1;
             this.thing2 = thing2;
             this.thing3 = thing3;

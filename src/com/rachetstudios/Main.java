@@ -8,7 +8,6 @@ public class Main {
 
     public static HashMap<String, Integer> hashMapBecauseIForgetHowToCreateThem;
 
-
     public static void main(String[] args) {
         // write your code here
         System.out.println("Hello world");
@@ -18,8 +17,8 @@ public class Main {
 
         InputAsPojo input = new InputAsPojo(inputFiles.get(0));
 
-        hashMapBecauseIForgetHowToCreateThem.put("key", 1);
-        hashMapBecauseIForgetHowToCreateThem.get("key");
+//        hashMapBecauseIForgetHowToCreateThem.put("key", 1);
+//        hashMapBecauseIForgetHowToCreateThem.get("key");
     }
 
     /**
