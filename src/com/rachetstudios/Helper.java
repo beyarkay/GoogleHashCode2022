@@ -6,7 +6,8 @@ package com.rachetstudios;
 public class Helper {
 	
 	
-	public static void tooLate(project, currentTime){
-		if project.best
+	public static boolean tooLate(InputAsPojo.Project project, int currentTime){
+//		if project.best
+		return true;
 	}
 }
