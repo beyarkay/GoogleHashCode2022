@@ -61,7 +61,8 @@ public class Helper {
 //		System.out.println(skillsRequired);
 		
 		for (InputAsPojo.Person person : input.people) {
-			if(peopleOnJob.size() == skillsRequired.size()){
+			
+			if(peopleOnJob.size() == project.skills.size()){
 				return peopleOnJob;
 			}
 			

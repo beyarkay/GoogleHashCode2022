@@ -12,13 +12,13 @@ public class Main {
         System.out.println("Hello world");
 
         List<String> inputFiles = getAllInputFiles();
+        Collections.sort(inputFiles);
         
         input = new InputAsPojo(inputFiles.get(0));
         System.out.println("input.first = " + input.first);
 
         System.out.println("input.people.get(0) = " + input.people.get(0));
-        System.out.println("input.people.get(0) = " + input.projects.get(0));
-        System.out.println("input.people.get(0) = " + input.people.get(0));
+        System.out.println("input.projects.get(0) = " + input.projects.get(0));
 
         FirstApproach.run();
     }
