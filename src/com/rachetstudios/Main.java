@@ -7,15 +7,16 @@ import java.util.stream.*;
 public class Main {
 
     public static HashMap<String, Integer> hashMapBecauseIForgetHowToCreateThem;
-
+    public static InputAsPojo input;
+    
     public static void main(String[] args) {
         // write your code here
         System.out.println("Hello world");
 //        System.out.println(convertAllInputFilesToPojos());
 
         List<String> inputFiles = getAllInputFiles();
-
-        InputAsPojo input = new InputAsPojo(inputFiles.get(0));
+        
+        input = new InputAsPojo(inputFiles.get(0));
         System.out.println("input.first = " + input.first);
 
         System.out.println("input.people.get(0) = " + input.people.get(0));
