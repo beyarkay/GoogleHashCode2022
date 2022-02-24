@@ -37,4 +37,9 @@ public class Helper {
 			return project.scoreOnCompletion;
 		}
 	}
+
+	public static double pointsPerPersonHour(InputAsPojo.Project project, int currentTime) {
+		int points = pointsPossibleToEarn(project, currentTime);
+		return ((double) points) / (project.numRoles + project.daysToCompletion);
+	}
 }
