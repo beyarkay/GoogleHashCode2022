@@ -16,9 +16,13 @@ public class Main {
         List<String> inputFiles = getAllInputFiles();
 
         InputAsPojo input = new InputAsPojo(inputFiles.get(0));
+        System.out.println("input.first = " + input.first);
+
+        System.out.println("input.people.get(0) = " + input.people.get(0));
+        System.out.println("input.people.get(0) = " + input.projects.get(0));
+        System.out.println("input.people.get(0) = " + input.people.get(0));
 
         FirstApproach.run();
-        
 //        hashMapBecauseIForgetHowToCreateThem.put("key", 1);
 //        hashMapBecauseIForgetHowToCreateThem.get("key");
     }
