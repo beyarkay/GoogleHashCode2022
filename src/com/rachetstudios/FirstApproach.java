@@ -66,9 +66,9 @@ public class FirstApproach {
 				
 			} while (startedAProject);
 
-//			if (runningProjects.isEmpty()) {
-//				break;
-//			}
+			if (runningProjects.isEmpty()) {
+				break;
+			}
 			
 			// wait for a project to finish
 			int endTime;

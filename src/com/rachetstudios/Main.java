@@ -15,13 +15,13 @@ public class Main {
 		List<String> inputFiles = getAllInputFiles();
 		Collections.sort(inputFiles);
 		
-		input = new InputAsPojo(inputFiles.get(0));
+		input = new InputAsPojo(inputFiles.get(1));
 		System.out.println("input.first = " + input.first);
 		
 		System.out.println("input.people.get(0) = " + input.people.get(0));
 		System.out.println("input.projects.get(0) = " + input.projects.get(0));
 		
-		output = new OutputItems("examples_out/temp.txt");
+		output = new OutputItems("1/temp.txt");
 		
 		FirstApproach.run();
 		
