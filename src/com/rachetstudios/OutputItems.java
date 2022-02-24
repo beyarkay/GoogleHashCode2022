@@ -1,3 +1,5 @@
+package com.rachetstudios;
+
 import com.rachetstudios.InputAsPojo;
 
 import java.io.BufferedWriter;
