@@ -16,9 +16,7 @@ public class Main {
 
         hashMapBecauseIForgetHowToCreateThem.put("key", 1);
         hashMapBecauseIForgetHowToCreateThem.get("key");
-
     }
-
 
     /**
      * https://www.baeldung.com/java-list-directory-files
