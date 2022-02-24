@@ -1,11 +1,11 @@
 package com.rachetstudios;
 
-import jdk.internal.joptsimple.internal.Strings;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class OutputItems {
@@ -51,15 +51,10 @@ public class OutputItems {
 
         @Override
         public String toString() {
-            String peopleAsString = Strings.join(
-                    people.stream()
-                            .map(p -> p.name)
-                            .collect(Collectors.toList()), " ");
+            String peopleAsString = people.stream()
+                    .map(p -> p.name)
+                    .reduce("", (a, b) -> a + " " + b);
             return projectName + "\n" + peopleAsString + "\n";
         }
-
-
     }
-
-
 }
