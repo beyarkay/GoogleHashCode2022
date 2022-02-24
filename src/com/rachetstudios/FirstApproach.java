@@ -1,6 +1,9 @@
 package com.rachetstudios;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+
+import static com.rachetstudios.Helper.pointsPerPersonHour;
 
 public class FirstApproach {
 	
@@ -18,12 +21,9 @@ public class FirstApproach {
 			boolean startedAProject = false; // Check if we were able to find a project
 			do {
 				for (InputAsPojo.Project project : projectsList) {
-					if (Helper.tooLate(project, currentTime)) {
-						project
-					}
-//					project.score = ... # number of points we'd get if we started it now
+					project.pointsPerPersonHour = pointsPerPersonHour(project, currentTime);
 				}
-//			    projects_list = projects.sort(by = points/total_man_hours)  # maybe this is too slow?
+				projectsList.sort(comparePointsPerHour);
 				
 				/*
 				for project in projects_list:
@@ -48,6 +48,6 @@ public class FirstApproach {
 		
 		
 	}
-	
-	
+
+	public static Comparator<InputAsPojo.Project> comparePointsPerHour = Comparator.comparingDouble(o -> o.pointsPerPersonHour);
 }

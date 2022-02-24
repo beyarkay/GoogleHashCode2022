@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.rachetstudios.Helper.pointsPerPersonHour;
+
 public class InputAsPojo {
     // Represents the very first line, which usually just has ints
     ArrayList<Integer> first = new ArrayList<>();
@@ -163,14 +165,14 @@ public class InputAsPojo {
     /**
      * Also represents one line of input data.
      */
-    public static class Project implements Comparable<Project> {
+    public static class Project {
         String projectName, name;
         Integer daysToCompletion, D;
         Integer scoreOnCompletion, S;
         Integer bestBeforeDay, B;
         Integer numRoles, R;
         ArrayList<Skill> skills;
-        Double pointsPerDay;
+        Double pointsPerPersonHour;
 
 
         public Project(String projectName, Integer daysToCompletion, Integer scoreOnCompletion, Integer bestBeforeDay, Integer numRoles, ArrayList<Skill> skills) {
@@ -187,7 +189,7 @@ public class InputAsPojo {
             this.B = this.bestBeforeDay;
             this.R = this.numRoles;
 
-            this.pointsPerDay = Double.valueOf(this.scoreOnCompletion) / Double.valueOf(this.daysToCompletion);
+            this.pointsPerPersonHour = pointsPerPersonHour(this, 0);
         }
 
         @Override
@@ -200,16 +202,6 @@ public class InputAsPojo {
                     ", numRoles=" + numRoles +
                     ", skills=" + skills +
                     '}';
-        }
-
-        /**
-         * If this == other:  0 is returned
-         * If this < other:  -1 is returned
-         * If this > other:   1 is returned
-         */
-        @Override
-        public int compareTo(Project other) {
-            return (int) (this.pointsPerDay - other.pointsPerDay);
         }
     }
 }
