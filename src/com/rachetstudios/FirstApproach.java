@@ -49,5 +49,5 @@ public class FirstApproach {
 		
 	}
 
-	public static Comparator<InputAsPojo.Project> comparePointsPerHour = Comparator.comparingDouble(o -> o.pointsPerPersonHour);
+	public static Comparator<InputAsPojo.Project> comparePointsPerHour = Comparator.comparingDouble(o -> -o.pointsPerPersonHour);
 }
