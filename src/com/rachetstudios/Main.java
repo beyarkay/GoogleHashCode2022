@@ -6,10 +6,17 @@ import java.util.stream.*;
 
 public class Main {
 
+    public static HashMap<String, Integer> hashMapBecauseIForgetHowToCreateThem;
+
+
     public static void main(String[] args) {
         // write your code here
         System.out.println("Hello world");
         System.out.println(convertAllInputFilesToPojos());
+
+        hashMapBecauseIForgetHowToCreateThem.put("key", 1);
+        hashMapBecauseIForgetHowToCreateThem.get("key");
+
     }
 
 
