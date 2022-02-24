@@ -42,9 +42,7 @@ public class FirstApproach {
 						startedAProject = true;
 						output.completedProjects.add(new OutputItems.CompletedProject(project, project.peopleOnProject));
 						
-						for (InputAsPojo.Person person : peopleOnJob) {
-							person.currentSkill.level += 1;
-						}
+						
 					}
 				}
 				
@@ -56,6 +54,9 @@ public class FirstApproach {
 		    running_projects.remove(next_completed_project)
 		    current_time = next_completed_project.start_time + next_completed_project.start_time.duration
 			 */
+//			for (InputAsPojo.Person person : peopleOnJob) {
+//				person.currentSkill.level += 1;
+//			}
 		}
 		
 		

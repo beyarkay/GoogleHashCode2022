@@ -77,6 +77,9 @@ public class Helper {
 				peopleOnJob.add(person);
 			}
 		}
+		if(peopleOnJob.size() == project.skills.size()){
+			return peopleOnJob;
+		}
 		return null;
 	}
 }
