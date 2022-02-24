@@ -1,5 +1,9 @@
 package com.rachetstudios;
 
+import java.util.ArrayList;
+
+import static com.rachetstudios.Main.input;
+
 /**
  * Helper methods to be shared amongst the approaches
  */
@@ -25,7 +29,7 @@ public class Helper {
 	 * @return the number of points available
 	 */
 	public static int pointsPossibleToEarn(InputAsPojo.Project project, int currentTime) {
-		int remainingDays = project.bestBeforeDay - (currentTime+project.daysToCompletion);
+		int remainingDays = project.bestBeforeDay - (currentTime + project.daysToCompletion);
 		if (remainingDays <= 0) {
 			int possibleScore = project.scoreOnCompletion - currentTime;
 			if (possibleScore <= 0) {
@@ -41,5 +45,23 @@ public class Helper {
 	public static double pointsPerPersonHour(InputAsPojo.Project project, int currentTime) {
 		int points = pointsPossibleToEarn(project, currentTime);
 		return ((double) points) / (project.numRoles + project.daysToCompletion);
+	}
+	
+	/**
+	 * Determines whether the project CAN be started given the current available people
+	 *
+	 * @param project
+	 * @return
+	 */
+	public static boolean canStart(InputAsPojo.Project project) {
+		ArrayList<InputAsPojo.Person> peopleOnJob = new ArrayList<InputAsPojo.Person>(project.numRoles);
+		ArrayList<InputAsPojo.Skill> skillsRequired = new ArrayList<InputAsPojo.Skill>(project.skills);
+		
+		skillsRequired.remove(-1);
+		
+		for (InputAsPojo.Person person : input.people) {
+		
+		}
+		return false;
 	}
 }

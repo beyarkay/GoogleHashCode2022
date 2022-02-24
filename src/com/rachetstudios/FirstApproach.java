@@ -5,13 +5,13 @@ import java.util.Comparator;
 
 import static com.rachetstudios.Helper.pointsPerPersonHour;
 
+import static com.rachetstudios.Main.input;
+
 public class FirstApproach {
-	
-	static ArrayList<InputAsPojo.Project> projectsList = new ArrayList<>();
 	
 	public static void run() {
 		System.out.println("running");
-
+		ArrayList<InputAsPojo.Project> projectsList = input.projects;
 //		list of idle people
 //		list of projects
 //		    Sort this by points/total man hours
@@ -25,6 +25,11 @@ public class FirstApproach {
 				}
 				projectsList.sort(comparePointsPerHour);
 				
+				for(InputAsPojo.Project project : projectsList){
+					if(Helper.canStart(project)){
+					
+					}
+				}
 				/*
 				for project in projects_list:
 		            if can_start(project, idle_people):
