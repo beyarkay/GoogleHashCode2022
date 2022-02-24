@@ -42,7 +42,7 @@ public class FirstApproach {
 						ArrayList<InputAsPojo.Person> orderedPeopleOnJob = new ArrayList<>();
 						for (InputAsPojo.Skill skill : project.skills) {
 							for (InputAsPojo.Person person : peopleOnJob) {
-								if (person.currentSkill == skill) {
+								if (person.currentSkill.name.equals(skill.name)) {
 									orderedPeopleOnJob.add(person);
 									break;
 								}
@@ -65,7 +65,10 @@ public class FirstApproach {
 				}
 				
 			} while (startedAProject);
-			
+
+//			if (runningProjects.isEmpty()) {
+//				break;
+//			}
 			
 			// wait for a project to finish
 			int endTime;
