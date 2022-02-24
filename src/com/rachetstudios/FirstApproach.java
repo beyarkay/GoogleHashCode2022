@@ -25,23 +25,22 @@ public class FirstApproach {
 				}
 				projectsList.sort(comparePointsPerHour);
 				
-				for(InputAsPojo.Project project : projectsList){
-					if(Helper.canStart(project)){
-					
-					}
-				}
-				/*
-				for project in projects_list:
-		            if can_start(project, idle_people):
-		                # start the project
+				for (InputAsPojo.Project project : projectsList) {
+					ArrayList<InputAsPojo.Person> peopleOnJob = Helper.canStart(project);
+					if (peopleOnJob != null) {
+						/*
+						# start the project
 		                project.people = ... # any people capable of doing it
 		                project.start_time = current_time
 		                running_projects.append(project)
 		                projects_list.remove(project)
 		                started_a_project = True
 		                write_to_output_file(project)
-				 */
-			} while(startedAProject);
+						 */
+					}
+				}
+				
+			} while (startedAProject);
 			/*
 			
 		    # wait for a project to finish
@@ -53,6 +52,6 @@ public class FirstApproach {
 		
 		
 	}
-
+	
 	public static Comparator<InputAsPojo.Project> comparePointsPerHour = Comparator.comparingDouble(o -> -o.pointsPerPersonHour);
 }

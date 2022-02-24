@@ -41,7 +41,7 @@ public class Helper {
 			return project.scoreOnCompletion;
 		}
 	}
-
+	
 	public static double pointsPerPersonHour(InputAsPojo.Project project, int currentTime) {
 		int points = pointsPossibleToEarn(project, currentTime);
 		return ((double) points) / (project.numRoles + project.daysToCompletion);
@@ -49,19 +49,30 @@ public class Helper {
 	
 	/**
 	 * Determines whether the project CAN be started given the current available people
+	 * Iterate over all the people and add them to the project greedily (for now)
 	 *
 	 * @param project
 	 * @return
 	 */
-	public static boolean canStart(InputAsPojo.Project project) {
+	public static ArrayList<InputAsPojo.Person> canStart(InputAsPojo.Project project) {
 		ArrayList<InputAsPojo.Person> peopleOnJob = new ArrayList<InputAsPojo.Person>(project.numRoles);
 		ArrayList<InputAsPojo.Skill> skillsRequired = new ArrayList<InputAsPojo.Skill>(project.skills);
 		
-		skillsRequired.remove(-1);
+//		System.out.println(skillsRequired);
 		
 		for (InputAsPojo.Person person : input.people) {
-		
+			if(peopleOnJob.size() == skillsRequired.size()){
+				return peopleOnJob;
+			}
+			
+			InputAsPojo.Skill skillFilled = person.canDoJob(skillsRequired);
+			if (skillFilled.name == null) {
+				continue;
+			} else {
+				skillsRequired.remove(skillFilled); // CHECK
+				peopleOnJob.add(person);
+			}
 		}
-		return false;
+		return null;
 	}
 }

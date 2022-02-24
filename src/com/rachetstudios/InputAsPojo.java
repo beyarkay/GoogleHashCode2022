@@ -123,7 +123,24 @@ public class InputAsPojo {
             this.numSkills = numSkills;
             this.skills = skills;
         }
-
+    
+        /**
+         * Checks whether its possible for the person to do the given job for the skills required.
+         * TODO: add a list of the already filled roles for the mentoring part (check the filled roles separately)
+         * @param skillsRequired
+         * @return
+         */
+        public Skill canDoJob(ArrayList<Skill> skillsRequired){
+            for(Skill skill : skills){
+                for(Skill skillRequired : skillsRequired){
+                    if(skill.name.equals(skillRequired.name) && skill.level >= skillRequired.level){
+                        return skillRequired;
+                    }
+                }
+            }
+            return new Skill(null, null);
+        }
+        
         @Override
         public String toString() {
             return "Person{" +
