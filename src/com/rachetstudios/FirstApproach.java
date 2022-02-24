@@ -42,6 +42,9 @@ public class FirstApproach {
 						startedAProject = true;
 						output.completedProjects.add(new OutputItems.CompletedProject(project, project.peopleOnProject));
 						
+						for (InputAsPojo.Person person : peopleOnJob) {
+							person.currentSkill.level += 1;
+						}
 					}
 				}
 				

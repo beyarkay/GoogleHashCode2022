@@ -117,6 +117,7 @@ public class InputAsPojo {
         String name;
         Integer numSkills;
         ArrayList<Skill> skills;
+        Skill currentSkill;
 
         public Person(String name, Integer numSkills, ArrayList<Skill> skills) {
             this.name = name;
@@ -134,6 +135,7 @@ public class InputAsPojo {
             for(Skill skill : skills){
                 for(Skill skillRequired : skillsRequired){
                     if(skill.name.equals(skillRequired.name) && skill.level >= skillRequired.level){
+                        currentSkill = skill;
                         return skillRequired;
                     }
                 }
