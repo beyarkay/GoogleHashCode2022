@@ -17,6 +17,8 @@ public class Main {
 
         InputAsPojo input = new InputAsPojo(inputFiles.get(0));
 
+        FirstApproach.run();
+        
 //        hashMapBecauseIForgetHowToCreateThem.put("key", 1);
 //        hashMapBecauseIForgetHowToCreateThem.get("key");
     }
